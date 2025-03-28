@@ -55,3 +55,5 @@ initialTodos.forEach((item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
 });
+
+newTodoValidator.resetValidation();
