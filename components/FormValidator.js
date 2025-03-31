@@ -8,14 +8,6 @@ class FormValidator {
     this._formElement = formElement;
   }
 
-  resetValidation() {
-    this._inputList.forEach((input) => {
-      this._hideInputError(this._formElement, input);
-    });
-    this._formElement.reset();
-    this._toggleButtonState();
-  }
-
   _showInputError(inputElement, errorMessage) {
     const errorElementId = `#${inputElement.id}-error`;
     const errorElement = this._formElement.querySelector(errorElementId);
@@ -79,6 +71,17 @@ class FormValidator {
       evt.preventDefault();
     });
     this._setEventListeners();
+  }
+
+  resetValidation() {
+    const buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    });
+    this._formElement.reset();
+    this._toggleButtonState(this._inputList, buttonElement);
   }
 }
 
